@@ -1,3 +1,19 @@
+import string 
+import re 
+
+def cleanup(text):
+  '''Remove non-informative words and characters (punctuation, extra space, ...)'''
+  tokens = text.split()
+  filtered_tokens = ' '.join([ i for i in tokens if not i.startswith('http') ])
+
+  # cleanup_chars = ''.join([ i for i in string.punctuation if i not in ("'", '/', '\\', '-', ':') ])  # puctuation chars minus "'" (it's used for example in "The Queen's Gambit")
+  # remove_punctuation = str.maketrans(cleanup_chars, ' ' * len(cleanup_chars))
+  # no_punctuation = filtered_tokens.translate(remove_punctuation)
+  
+  # no_extra_space = re.sub(' +', ' ', no_punctuation).strip()
+  
+  return filtered_tokens
+
 
 def compress(data):
   
@@ -130,9 +146,9 @@ def convert_animated_emojis(data):
 def convert_text_emoji(data):
 
   emoji_list1 = [':)', ':-)', ':p', ':P', ':-p', ':-P', ':b', ':D', ":')", ":'-)", ':3', '<3', ':]', '=)', 'xD', 'XD', '8D', '=D', ':*', ':-*', ':x', ';)', ';-)', '^_^']
-  emoji_list2 = [':(', ':-(', ":'(",':O', ':o', ':c', ':C', "D‑':",'D:<','D:','D8','D;','D=','DX', ':\\', '=/', '=\\', ':X', ':$']
-  emoji_list3 = [':|', ':‑|']
-  emoji_list4 = ['O_O','o‑o','O_o','o_O','o_o','O-O']
+  emoji_list2 = [':(', ':-(', ":'(",':O', ':o', ':c', ':C', "D-':",'D:<','D:','D8','D;','D=','DX', ':\\', '=/', '=\\', ':X', ':$']
+  emoji_list3 = [':|', ':-|']
+  emoji_list4 = ['O_O','o-o','O_o','o_O','o_o','O-O']
   emoji_list_with_space = [' :/']
   
   output = []
