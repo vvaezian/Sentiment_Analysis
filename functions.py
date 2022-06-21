@@ -4,7 +4,7 @@ import re
 def cleanup(text):
   '''Remove non-informative words and characters (punctuation, extra space, ...)'''
   tokens = text.split()
-  filtered_tokens = ' '.join([ i for i in tokens if not i.startswith('http') ])
+  filtered_tokens = ' '.join([ i for i in tokens if not i.startswith('http') and not i.startswith('@') ])
 
   # cleanup_chars = ''.join([ i for i in string.punctuation if i not in ("'", '/', '\\', '-', ':') ])  # puctuation chars minus "'" (it's used for example in "The Queen's Gambit")
   # remove_punctuation = str.maketrans(cleanup_chars, ' ' * len(cleanup_chars))
@@ -162,7 +162,7 @@ def convert_text_emoji(data):
   return output
 
 def get_tokens(data):
-  return ' '.join(data).split()
+  return ' '.join(data).split() 
 
 def show_emoji(string):
   '''expecting an emoji string without backslashes, e.g. "xf0x9fx98x82"'''
