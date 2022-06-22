@@ -4,7 +4,10 @@ import re
 def cleanup(text):
   '''Remove non-informative words and characters (punctuation, extra space, ...)'''
   tokens = text.split()
-  filtered_tokens = ' '.join([ i for i in tokens if not i.startswith('http') and not i.startswith('@') ])
+  filtered_tokens = ' '.join([ i for i in tokens if not i.startswith('http') 
+                                                and not i.startswith('@') 
+                                                and len(i) > 1 
+                            ])
 
   # cleanup_chars = ''.join([ i for i in string.punctuation if i not in ("'", '/', '\\', '-', ':') ])  # puctuation chars minus "'" (it's used for example in "The Queen's Gambit")
   # remove_punctuation = str.maketrans(cleanup_chars, ' ' * len(cleanup_chars))
@@ -36,6 +39,8 @@ def compress(data):
   compressed_tokens_list = [ [compress_string(i) for i in line_list ] for line_list in line_lists ]
   return [ ' '.join(i) for i in compressed_tokens_list ]
 
+
+
 def map_pos(treebank_tag):
   from nltk.corpus import wordnet # pos
   if treebank_tag.startswith('J'):
@@ -49,6 +54,8 @@ def map_pos(treebank_tag):
   else:
     return wordnet.NOUN
   
+
+
 def my_tokenize(line, print_emoji=False):  
   # Tokenizes a line of strings which may contain encoded emojis. In this case it converts them to strings 
   
@@ -138,10 +145,14 @@ def my_tokenize(line, print_emoji=False):
         tokens.append(item.lower())
   return tokens
 
+
+
 def convert_animated_emojis(data):
   converted_tokens_list = [my_tokenize(i) for i in data]
   converted_data = [ ' '.join(i) for i in converted_tokens_list ]
   return converted_data
+
+
 
 def convert_text_emoji(data):
 
@@ -161,8 +172,12 @@ def convert_text_emoji(data):
     output.append(line)
   return output
 
+
+
 def get_tokens(data):
   return ' '.join(data).split() 
+
+
 
 def show_emoji(string):
   '''expecting an emoji string without backslashes, e.g. "xf0x9fx98x82"'''
@@ -174,6 +189,8 @@ def show_emoji(string):
   else:
     return string
   return full_string.encode('latin').decode('unicode_escape').encode('latin').decode()
+
+
 
 def most_common(data, n, with_count=True):
   from collections import Counter
