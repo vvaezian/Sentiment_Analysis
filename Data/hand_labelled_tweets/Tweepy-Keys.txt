@@ -1,7 +1,0 @@
-Consumer API: gZuzLxydvDo1mtQKok31kTPTv
-API secret Key: vnIxuyB30WVszAtMVuIEi4mdiZKJFLlxaluavvOauAUBmFVhzq
-
-
-923010884833652736-zuBWr5hAMCbrJKeATbFsEhLRpgAY1YC (Access token)
-
-y58b2yKk8F8mtrJTqnKB3TFqTLmOutFdIUmQmhSjSp0El (Access token secret)
